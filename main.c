@@ -6,7 +6,7 @@
 /*   By: twileniu <twileniu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 12:10:11 by twileniu          #+#    #+#             */
-/*   Updated: 2022/02/28 15:00:17 by twileniu         ###   ########.fr       */
+/*   Updated: 2022/02/28 16:56:53 by twileniu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,25 @@ static void	ft_usage(void)
 int	main(int argc, char **argv)
 {
 	char *pieces;
+	char **tetrilist;
+	int i = 0;
 
 	pieces = NULL;
 	if (argc == 2)
 	{
 		pieces = ft_reader(argv[1]);
-		printf("%s\n", pieces);
-		//ft_seperate()
+		//printf("%s\n", pieces);
 		ft_checks(pieces);
+		tetrilist = ft_separate(pieces);
+		/*while(tetrilist[i] != NULL)
+		{
+			printf("%s\n", tetrilist[i]);
+			i++;
+		}*/
 		//ft_solver(pieces);
 		//ft_checks(pieces);
 		//ft_solver(pieces);
-		free(pieces);
+		//free(pieces);
 	}
 	else
 		ft_usage();
