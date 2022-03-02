@@ -6,7 +6,7 @@
 /*   By: twileniu <twileniu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 10:43:06 by twileniu          #+#    #+#             */
-/*   Updated: 2022/03/02 14:37:26 by twileniu         ###   ########.fr       */
+/*   Updated: 2022/03/02 16:15:08 by twileniu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,9 @@ char	*ft_clear(char *board, int j)
 }
 
 
+
+
+/*
 static int ft_algo(char *board, char **tetrilist, int z, int y)
 {
 	//printf("%s\n", board);
@@ -81,7 +84,7 @@ static int ft_algo(char *board, char **tetrilist, int z, int y)
 	j = y;
 	k = z;
 	//printf("%d\n", j);
-	while (tetrilist[j][i] < 'A')
+	while (tetrilist[j][i] < 'A' && tetrilist[j][i])
 		i++;
 	//printf("%s\n", tetrilist[j]);
 	//printf("TEST\n");
@@ -96,7 +99,7 @@ static int ft_algo(char *board, char **tetrilist, int z, int y)
 		i++;
 	}
 	printf("%d\n", g_size);
-	if (k > 3 && k > g_size * (g_size + 1) + 1)
+	if (k > g_size * (g_size + 1) + 1)
 	{
 		g_size++;
 		z = 0;
@@ -104,7 +107,7 @@ static int ft_algo(char *board, char **tetrilist, int z, int y)
 		ft_algo(board, tetrilist, z, y);
 	}
 	printf("%s\n", board);
-	if (ft_checkplacement(board, j) == 0)
+	if (ft_checkplacement(board, j) == 0 && i < g_size * (g_size + 1) + 1)
 	{
 		ft_clear(board, j);
 		//printf("%s\n", board);
@@ -116,7 +119,7 @@ static int ft_algo(char *board, char **tetrilist, int z, int y)
 		ft_algo(board, tetrilist, z, y + 1);
 		return(1);
 	}
-		
+	return(0);	
 
 }
 
@@ -160,4 +163,103 @@ void	ft_solver(char **tetrilist)
 		k++;
 	}
 	free(tetrilist);
+}
+*/
+
+
+
+
+
+static int	ft_place(char *board, char **tetrilist, int k)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (tetrilist[j][i] < 'A')
+		i++;
+	while (k < g_size * (g_size + 1))
+	{
+		if (board[k] == '.' && tetrilist[j][i] >= 'A')
+			board[k] = tetrilist[j][i];
+		if (i % (g_size + 1) != 0 && tetrilist[j][i] == '\n')
+			++i;
+		k++;
+		i++;
+	}
+	if (!ft_checkplacement(board, j))
+	{
+		return (1);
+		/*ft_clear(board, j);
+		k++;
+		ft_place(board, tetrilist, k);*/
+		return(1);
+	}
+	return(0);
+}
+
+static char	*ft_algo(char *board, char **tetrilist, int k)
+{
+	int i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	if (!tetrilist[0])
+		return (0);
+	while (tetrilist[j][i] < 'A')
+		i++;
+	while (board[k])
+	{
+		if (ft_place(board, tetrilist, k) == 1)
+		{
+			ft_clear(board, j);
+			k++;
+			ft_algo(board, tetrilist, k);
+		}
+		else
+			printf("SDAOHSAD\n");
+
+	}
+	printf("%s\n", board);
+	//ft_algo(board, tetrilist);
+	return (NULL);
+}
+
+void	ft_solver(char **tetrilist)
+{
+	char	*board;
+	size_t	i;
+	char		*res;
+	int		counter;
+	int		k;
+
+	counter = 0;
+
+	i  = 0;
+	k = 0;
+	board = ft_board_size();
+	if(!board)
+		ft_error();
+	while (counter < 10)
+	{
+		while (i < g_size * (g_size + 1))
+		{
+			board[i] = '.';
+			if (i % (g_size + 1) == g_size)
+				board[i] = '\n';
+			++i;	
+		}
+		counter++;
+		printf("bord:\n%s\n",  board);
+		res = ft_algo(board, tetrilist, k);
+		if (!res)
+		{
+			printf("asddsa%s\n", res);
+			g_size++;
+			free(board);
+			board = ft_strnew(g_size * (g_size + 1));
+		}
+	}
 }
