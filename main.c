@@ -6,7 +6,7 @@
 /*   By: twileniu <twileniu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 12:10:11 by twileniu          #+#    #+#             */
-/*   Updated: 2022/02/28 17:13:29 by twileniu         ###   ########.fr       */
+/*   Updated: 2022/03/02 11:31:25 by twileniu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,6 @@ int	main(int argc, char **argv)
 		//printf("%s\n", pieces);
 		ft_checks(pieces);
 		tetrilist = ft_separate(pieces);
-		/*while(tetrilist[i] != NULL)
-		{
-			printf("%s\n", tetrilist[i]);
-			free(tetrilist[i]);
-			i++;
-		}
-		free(tetrilist);*/
 		ft_solver(tetrilist);
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: twileniu <twileniu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 13:16:19 by twileniu          #+#    #+#             */
-/*   Updated: 2022/02/28 16:53:45 by twileniu         ###   ########.fr       */
+/*   Updated: 2022/03/02 11:32:37 by twileniu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ static void ft_check_line_len(char *pieces)
 			len = 0;
 		}
 		i++;
+		g_npieces = (line_count + 1) / 5;
 	}
 }
 

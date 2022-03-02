@@ -6,7 +6,7 @@
 /*   By: twileniu <twileniu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 16:18:05 by twileniu          #+#    #+#             */
-/*   Updated: 2022/02/28 16:56:08 by twileniu         ###   ########.fr       */
+/*   Updated: 2022/03/02 12:00:43 by twileniu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	**ft_separate(char *pieces)
 	int				j;
 	int				k;
 
-	tetriminos = (char **)malloc(sizeof(char) * 2 * 21);
+	tetriminos = (char **)malloc(sizeof(char) * g_npieces * 21);
 	linecount = 0;
 	j = 0;
 	k = 0;

@@ -6,7 +6,7 @@
 #    By: twileniu <twileniu@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/31 10:26:09 by jpuronah          #+#    #+#              #
-#    Updated: 2022/02/28 12:24:47 by twileniu         ###   ########.fr        #
+#    Updated: 2022/03/01 23:37:31 by twileniu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,18 +23,18 @@ all: $(NAME)
 
 $(NAME):
 	make -C $(LIBFT)
-	gcc $(FLAGS) -o $(NAME) $(SRC) -I $(HEADER) -L. libft/libft.a
+	gcc $(FLAGS) -g $(NAME) $(SRC) -I $(HEADER) -L. libft/libft.a
 
 test:
-	gcc -o $(NAME) $(SRC) $(GNL) -I $(HEADER) -L. libft/libft.a
+	gcc -g -o $(NAME) $(SRC) $(GNL) -I $(HEADER) -L. libft/libft.a
 
 leaks:	fclean
 	make -C $(LIBFT)
-	gcc -o $(NAME) $(SRC) $(GNL) -I $(HEADER) -L. libft/libft.a -fsanitize=address
+	gcc -g $(NAME) $(SRC) $(GNL) -I $(HEADER) -L. libft/libft.a -fsanitize=address
 
 noflags: fclean
 	make -C $(LIBFT)
-	gcc -o $(NAME) $(SRC) $(GNL) -I $(HEADER) -L. libft/libft.a
+	gcc -g $(NAME) $(SRC) $(GNL) -I $(HEADER) -L. libft/libft.a
 
 allflags: fclean
 	make -C $(LIBFT)

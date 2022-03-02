@@ -5,6 +5,9 @@
 #include <stdio.h>
 #include <fcntl.h>
 
+int g_npieces;
+int g_size;
+
 char    *ft_reader(char *argv);
 void    ft_error(void);
 void    ft_checks(char *pieces);
