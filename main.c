@@ -6,13 +6,13 @@
 /*   By: twileniu <twileniu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 12:10:11 by twileniu          #+#    #+#             */
-/*   Updated: 2022/03/02 11:31:25 by twileniu         ###   ########.fr       */
+/*   Updated: 2022/03/03 20:42:49 by twileniu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void ft_error(void)
+void	ft_error(void)
 {
 	ft_putendl("error");
 	exit(1);
@@ -27,22 +27,18 @@ static void	ft_usage(void)
 
 int	main(int argc, char **argv)
 {
-	char *pieces;
-	char **tetrilist;
-	int i = 0;
+	char	*pieces;
+	char	**tetrilist;
 
 	pieces = NULL;
 	if (argc == 2)
 	{
 		pieces = ft_reader(argv[1]);
-		//printf("%s\n", pieces);
-		ft_checks(pieces);
+		ft_checks (pieces);
 		tetrilist = ft_separate(pieces);
 		ft_solver(tetrilist);
 	}
 	else
 		ft_usage();
-	return(0);	
-
-
+	return (0);
 }

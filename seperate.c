@@ -6,7 +6,7 @@
 /*   By: twileniu <twileniu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 16:18:05 by twileniu          #+#    #+#             */
-/*   Updated: 2022/03/02 12:00:43 by twileniu         ###   ########.fr       */
+/*   Updated: 2022/03/03 21:22:32 by twileniu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,13 @@ size_t len, int chr)
 	return (substr);
 }
 
-char	**ft_separate(char *pieces)
+static char	**ft_split_string(char **tetriminos, char *pieces)
 {
-	char			**tetriminos;
 	int				linecount;
 	unsigned int	start;
 	int				j;
 	int				k;
 
-	tetriminos = (char **)malloc(sizeof(char) * g_npieces * 21);
 	linecount = 0;
 	j = 0;
 	k = 0;
@@ -62,9 +60,37 @@ char	**ft_separate(char *pieces)
 			j++;
 			start = start + 21;
 		}
-		//printf("%s\n", tetriminos[j - 1]);
 	}
 	tetriminos[j] = NULL;
 	free(pieces);
 	return (tetriminos);
+}
+
+char	**ft_separate(char *pieces)
+{
+	char			**tetriminos;
+//	int				linecount;
+//	unsigned int	start;
+//	int				j;
+//	int				k;
+
+	tetriminos = (char **)malloc(sizeof(char) * g_npieces * 21);
+	/*linecount = 0;
+	j = 0;
+	k = 0;
+	start = 0;
+	while (pieces[k] != '\0')
+	{
+		if (pieces[k] == '\n')
+			linecount++;
+		if (k++ % 20 == 0)
+		{
+			tetriminos[j] = ft_strsub_chr(pieces, start, 20, j);
+			j++;
+			start = start + 21;
+		}
+	}
+	tetriminos[j] = NULL;
+	free(pieces); */
+	return (ft_split_string(tetriminos, pieces));
 }
