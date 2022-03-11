@@ -6,7 +6,7 @@
 /*   By: twileniu <twileniu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:09:20 by jpuronah          #+#    #+#             */
-/*   Updated: 2022/03/09 21:43:52 by twileniu         ###   ########.fr       */
+/*   Updated: 2022/03/11 12:37:36 by twileniu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ static ssize_t	ft_placement_check(char *board, char c)
 
 	i = 0;
 	sidecount = 0;
-	g_count++;
 	while (board[i] != '\0')
 	{
 		if (board[i] == c)
@@ -27,7 +26,7 @@ static ssize_t	ft_placement_check(char *board, char c)
 			if (i > 0 && board[i - 1] == c)
 				++sidecount;
 			if (i < g_size * (g_size + 1) - 1 && board[i + 1] == c)
-					++sidecount;
+				++sidecount;
 			if (i > (g_size - 1) && board[i - g_size - 1] == c)
 				++sidecount;
 			if (i < (g_size * (g_size + 1) - g_size)
@@ -88,6 +87,7 @@ static size_t	ft_place(char *board, char *tetri, size_t i)
 		if (count == 4)
 			break ;
 	}
+	++g_optim;
 	if (ft_placement_check(board, letter))
 		return (1);
 	return (0);

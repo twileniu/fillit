@@ -6,7 +6,7 @@
 /*   By: twileniu <twileniu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:29:51 by jpuronah          #+#    #+#             */
-/*   Updated: 2022/03/10 15:23:14 by twileniu         ###   ########.fr       */
+/*   Updated: 2022/03/11 14:35:42 by twileniu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ void	ft_board(char **tetrilist)
 	board = ft_set_board(board, tetrilist);
 	if (board)
 	{
-		printf("%zu\n", g_count);
 		ft_putstr(board);
+		printf("%zu\n", g_optim);
 		free(board);
 		exit(EXIT_SUCCESS);
 	}

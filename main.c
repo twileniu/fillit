@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: twileniu <twileniu@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jpuronah <jpuronah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 12:10:11 by twileniu          #+#    #+#             */
-/*   Updated: 2022/03/09 21:43:31 by twileniu         ###   ########.fr       */
+/*   Updated: 2022/03/10 13:27:27 by jpuronah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int argc, char **argv)
 	char	*pieces;
 	char	**tetrilist;
 
-	g_count = 0;
+	g_optim = 0;
 	if (argc == 2)
 	{
 		pieces = ft_reader(argv[1]);
