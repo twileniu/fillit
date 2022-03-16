@@ -6,7 +6,7 @@
 /*   By: jpuronah <jpuronah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 12:33:09 by twileniu          #+#    #+#             */
-/*   Updated: 2022/03/04 14:29:19 by jpuronah         ###   ########.fr       */
+/*   Updated: 2022/03/16 16:00:38 by jpuronah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static char	*ft_read_to_fill(char *pieces, int fd, char *argv)
 	ssize_t	n_bytes;
 	char	buf;
 
+	buf = '\0';
 	n_bytes = 0;
 	fd = open(argv, O_RDONLY);
 	if (fd < 0)

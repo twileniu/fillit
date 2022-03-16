@@ -6,7 +6,7 @@
 /*   By: jpuronah <jpuronah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 12:10:11 by twileniu          #+#    #+#             */
-/*   Updated: 2022/03/10 13:27:27 by jpuronah         ###   ########.fr       */
+/*   Updated: 2022/03/16 18:32:32 by jpuronah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_error(void)
 {
 	ft_putendl("error");
-	exit(1);
+	exit(EXIT_FAILURE);
 }
 
 static void	ft_usage(void)
@@ -30,7 +30,6 @@ int	main(int argc, char **argv)
 	char	*pieces;
 	char	**tetrilist;
 
-	g_optim = 0;
 	if (argc == 2)
 	{
 		pieces = ft_reader(argv[1]);

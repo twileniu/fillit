@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   solve.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: twileniu <twileniu@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jpuronah <jpuronah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:09:20 by jpuronah          #+#    #+#             */
-/*   Updated: 2022/03/11 12:37:36 by twileniu         ###   ########.fr       */
+/*   Updated: 2022/03/16 18:32:38 by jpuronah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static ssize_t	ft_placement_check(char *board, char c)
+static ssize_t	ft_placement_check(char *board, char c, size_t size)
 {
 	size_t	i;
 	size_t	sidecount;
@@ -25,12 +25,12 @@ static ssize_t	ft_placement_check(char *board, char c)
 		{
 			if (i > 0 && board[i - 1] == c)
 				++sidecount;
-			if (i < g_size * (g_size + 1) - 1 && board[i + 1] == c)
+			if (i < size * (size + 1) - 1 && board[i + 1] == c)
 				++sidecount;
-			if (i > (g_size - 1) && board[i - g_size - 1] == c)
+			if (i > (size - 1) && board[i - size - 1] == c)
 				++sidecount;
-			if (i < (g_size * (g_size + 1) - g_size)
-				&& board[i + g_size + 1] == c)
+			if (i < (size * (size + 1) - size)
+				&& board[i + size + 1] == c)
 				++sidecount;
 		}
 		++i;
@@ -54,16 +54,16 @@ static void	ft_clear_previous(char *board, ssize_t c)
 	}
 }
 
-static size_t	ft_adjust_position(char *piece, size_t i, size_t j)
+static size_t	ft_adjust_position(char *piece, size_t i, size_t j, size_t size)
 {
-	if (piece[j] == '\n' && g_size == 3)
+	if (piece[j] == '\n' && size == 3)
 		i--;
-	if (piece[j] == '\n' && g_size != 3 && g_size != 4)
-		i += (g_size - 4);
+	if (piece[j] == '\n' && size != 3 && size != 4)
+		i += (size - 4);
 	return (i);
 }
 
-static size_t	ft_place(char *board, char *tetri, size_t i)
+static size_t	ft_place(char *board, char *tetri, size_t i, size_t size)
 {
 	size_t		j;
 	char		letter;
@@ -74,8 +74,8 @@ static size_t	ft_place(char *board, char *tetri, size_t i)
 	letter = tetri[j];
 	while (tetri[j])
 	{
-		i = ft_adjust_position(tetri, i, j);
-		if (i > (g_size * (g_size + 1)) || board[i] == '\0')
+		i = ft_adjust_position(tetri, i, j, size);
+		if (i > (size * (size + 1)) || board[i] == '\0')
 			break ;
 		if (board[i] == '.' && tetri[j] >= 'A')
 		{
@@ -87,13 +87,12 @@ static size_t	ft_place(char *board, char *tetri, size_t i)
 		if (count == 4)
 			break ;
 	}
-	++g_optim;
-	if (ft_placement_check(board, letter))
+	if (ft_placement_check(board, letter, size))
 		return (1);
 	return (0);
 }
 
-char	*ft_solve(char *board, char **tetrilist)
+char	*ft_solve(char *board, char **tetrilist, size_t size)
 {
 	size_t	i;
 
@@ -104,10 +103,10 @@ char	*ft_solve(char *board, char **tetrilist)
 		tetrilist[0]++;
 	while (board[i])
 	{
-		i = ft_optimization(board, tetrilist[0], i);
-		if (ft_place(board, *tetrilist, i) != 1)
+		i = ft_optimization(board, tetrilist[0], i, size);
+		if (ft_place(board, *tetrilist, i, size) != 1)
 			ft_clear_previous(&board[i], *tetrilist[0]);
-		else if (!ft_solve(board, &tetrilist[1]))
+		else if (!ft_solve(board, &tetrilist[1], size))
 			ft_clear_previous(&board[i], *tetrilist[0]);
 		else
 			return (board);

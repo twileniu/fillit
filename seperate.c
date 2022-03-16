@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   seperate.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: twileniu <twileniu@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jpuronah <jpuronah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 16:18:05 by twileniu          #+#    #+#             */
-/*   Updated: 2022/03/11 14:30:32 by twileniu         ###   ########.fr       */
+/*   Updated: 2022/03/16 16:00:57 by jpuronah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ size_t len, ssize_t chr)
 		return (NULL);
 	substr = (char *)malloc(sizeof(char) * (len + 1));
 	if (!substr)
-		return (NULL);
+		ft_error();
 	i = 0;
 	while (i < len && pieces[start] != '\0')
 	{
@@ -45,8 +45,12 @@ char	**ft_separate(char *pieces)
 	size_t	start;
 	ssize_t	j;
 	ssize_t	k;
+	size_t	n_pieces;
 
-	tetrilist = (char **)malloc(sizeof(char) * g_npieces * 21);
+	n_pieces = ft_strlen(pieces) / 21;
+	tetrilist = (char **)malloc(sizeof(char) * n_pieces * 21);
+	if (!tetrilist)
+		ft_error();
 	j = 0;
 	k = 0;
 	start = 0;

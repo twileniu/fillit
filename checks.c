@@ -6,7 +6,7 @@
 /*   By: jpuronah <jpuronah@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 13:16:19 by twileniu          #+#    #+#             */
-/*   Updated: 2022/03/09 17:23:05 by jpuronah         ###   ########.fr       */
+/*   Updated: 2022/03/16 15:58:42 by jpuronah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,11 @@ static void	ft_characters(char *pieces)
 			++new_lines;
 		++i;
 	}
+	if (new_lines == 0 || tag == 0 || dot == 0)
+		ft_error();
 	if ((new_lines + 1) % 5 != 0 || tag % 4 != 0 || dot % 12 != 0)
+		ft_error();
+	if (((new_lines + 1) / 5) > 26)
 		ft_error();
 }
 
@@ -62,7 +66,6 @@ static void	ft_check_line_len(char *pieces)
 		}
 		i++;
 	}
-	g_npieces = (line_count + 1) / 5;
 }
 
 static size_t	ft_check_adj(char *pieces, size_t i, size_t adj, size_t count)
